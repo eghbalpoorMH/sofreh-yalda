@@ -1,6 +1,18 @@
 # 🍉 سفره یلدا (Sofreh Yalda) — بازی پازل شب چله روی پردازش لبه آروان‌کلاد
 
+[![Play Live on ArvanCloud Edge](https://img.shields.io/badge/🎮_اجرای_آنلاین_بازی-پردازش_لبه_آروان‌کلاد-e11d48?style=for-the-badge)](https://sofreh-yalda.mheghbalpoor-0lkub.arvanedge.ir/)
+
+🔗 **لینک اجرای آنلاین بازی (ArvanCloud Edge):** **[https://sofreh-yalda.mheghbalpoor-0lkub.arvanedge.ir/](https://sofreh-yalda.mheghbalpoor-0lkub.arvanedge.ir/)**
+
 **سفره یلدا** یک بازی پازل و جورچین (Match-3 به سبک کندی کراش) با حال‌وهوای اصیل شب یلدا است که به‌طور اختصاصی برای **مسابقه بازی‌سازی روی پردازش لبه آروان‌کلاد (`edge-games`)** طراحی و پیاده‌سازی شده است.
+
+---
+
+## 🖼️ تصاویر محیط بازی (Screenshots)
+
+| سفره بازی و خوراکی‌های یلدایی | نقشه مراحل و چالش روزانه لبه | فال حافظ شب یلدا |
+| :---: | :---: | :---: |
+| ![محیط گیم‌پلی سفره یلدا](public/thumbnail.png) | ![نقشه مراحل سفره یلدا](public/screenshot-map.png) | ![فال حافظ شب یلدا](public/screenshot-fal.png) |
 
 ---
 
@@ -46,7 +58,7 @@
 
 ---
 
-## 🚀 راهنمای اجرا و انتشار روی پردازش لبه آروان‌کلاد
+## 🚀 راهنمای اجرا و ساخت باندل پردازش لبه
 
 ### اجرای محلی (Local Development)
 ```bash
@@ -58,10 +70,4 @@ npm start
 ```bash
 npm run build
 ```
-این دستور فایل یکپارچه [dist/arvan-edge-worker.js](file:///home/mohammad/projects/myprojects/yalda-arvan-fruit/dist/arvan-edge-worker.js) را تولید می‌کند که کل فرانت‌اند و تمام APIهای پردازش لبه را در یک اسکریپت Serverless واحد (حجم ~۱۶۰ کیلوبایت) جای داده است.
-
-### مراحل انتشار در پنل آروان‌کلاد:
-1. وارد پنل **پردازش لبه آروان‌کلاد** شوید: `https://panel.arvancloud.ir/edge-computing/edge-computes`
-2. یک سرویس پردازش لبه جدید (مثلاً با نام `sofreh-yalda`) بسازید.
-3. محتویات فایل `dist/arvan-edge-worker.js` را در ویرایشگر کد پردازش لبه قرار دهید (یا فایل را آپلود کنید) و دکمه **انتشار (Deploy)** را بزنید.
-4. لینک ساب‌دامین خود (مثلاً `https://sofrehyalda.<namespace>.arvanedge.ir`) را در فرم ثبت مسابقه (`https://try.arvancloud.ir/edge-games/`) در دسته‌بندی **پازل و معمایی** یا **کژوال** ثبت کنید!
+این دستور فایل یکپارچه `dist/arvan-edge-worker.js` را تولید می‌کند که کل فرانت‌اند و تمام APIهای پردازش لبه را در یک اسکریپت Serverless واحد جای داده است.
