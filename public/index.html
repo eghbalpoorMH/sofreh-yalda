@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>سفره یلدا | بازی پازل شب چله روی پردازش لبه آروان‌کلاد</title>
+  <meta name="description" content="سفره یلدا - بازی جذاب جورچین و پازل شب یلدا (سبک کندی کراش) با فال حافظ، چالش روزانه و لیدربورد آنلاین روی پردازش لبه آروان‌کلاد" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lalezar&family=Vazirmatn:wght@400;500;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <!-- Starry Sky & Traditional Gereh-Chini Background -->
+  <div class="sky-backdrop" aria-hidden="true">
+    <div class="stars-layer"></div>
+    <div class="gereh-overlay"></div>
+    <div class="glow-orb orb-crimson"></div>
+    <div class="glow-orb orb-gold"></div>
+  </div>
+
+  <div class="app-shell">
+    <!-- Top Header Bar -->
+    <header class="top-bar">
+      <div class="brand-group">
+        <div class="brand-logo" id="btn-home-logo" title="بازگشت به نقشه سفره یلدا">
+          <span class="logo-icon">🍉</span>
+          <div class="logo-text">
+            <h1>سفره یلدا</h1>
+            <span class="edge-pill" id="edge-status-pill">⚡ پردازش لبه آروان</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="stats-bar">
+        <div class="stat-pill" title="مجموع ستاره‌های مراحل">
+          <span class="stat-icon">⭐</span>
+          <span id="total-stars-val">۰</span>
+          <span class="stat-label">/ ۴۵</span>
+        </div>
+        <div class="stat-pill" title="گردوی طلایی (برای خرید ابزار کمکی و حرکت اضافه)">
+          <span class="stat-icon">🪙</span>
+          <span id="coins-val">۱۰۰</span>
+        </div>
+        <div class="stat-pill streak-pill" title="زنجیره روزهای بازی">
+          <span class="stat-icon">🔥</span>
+          <span id="streak-val">۱ روز</span>
+        </div>
+      </div>
+
+      <nav class="nav-actions">
+        <button class="icon-btn" id="btn-fal" title="فال حافظ شب یلدا">
+          <span>📜</span>
+          <small>فال حافظ</small>
+        </button>
+        <button class="icon-btn" id="btn-leaderboard" title="جدول رده‌بندی آنلاین لبه">
+          <span>🏆</span>
+          <small>رده‌بندی</small>
+        </button>
+        <button class="icon-btn" id="btn-guide" title="راهنمای بازی و بمب‌های ترکیبی">
+          <span>❓</span>
+          <small>راهنما</small>
+        </button>
+        <button class="icon-btn sound-btn" id="btn-sound" title="قطع/وصل صدای سنتور و افکت‌ها">
+          <span id="sound-icon">🔊</span>
+          <small>صدا</small>
+        </button>
+      </nav>
+    </header>
+
+    <!-- SCREEN 1: SAGA LEVEL MAP (نقشه مراحل سفره یلدا) -->
+    <main id="screen-map" class="screen active">
+      <div class="map-layout">
+        <!-- Daily Challenge & Welcome Banner -->
+        <section class="daily-hero-card">
+          <div class="daily-badge-row">
+            <span class="live-dot"></span>
+            <span class="daily-tag">چالش روزانه همگام با سرور Edge</span>
+            <span class="yalda-countdown" id="yalda-countdown">🌙 شب چله مبارک</span>
+          </div>
+          <div class="daily-content">
+            <div class="daily-info">
+              <h2 id="daily-title">⚡ باران انار یاقوتی</h2>
+              <p id="daily-subtitle">امروز در سفره یلدا، انارها امتیاز ویژه می‌دهند و قندیل‌های یخ باید شکسته شوند!</p>
+              <div class="daily-meta">
+                <span id="daily-node-badge">🌐 نود لبه: arvan-edge-thr-1</span>
+                <span>🎁 جایزه: +۳۰ گردوی طلایی و ثبت در لیدربورد روزانه</span>
+              </div>
+            </div>
+            <button class="btn-primary btn-daily-play" id="btn-play-daily">
+              <span>⚡ شروع چالش امروز</span>
+            </button>
+          </div>
+        </section>
+
+        <!-- Winding Saga Map Card -->
+        <section class="saga-map-card">
+          <div class="saga-map-header">
+            <div>
+              <h2>🗺️ نقشه مراحل سفره یلدا</h2>
+              <p>مراحل را یکی پس از دیگری باز کنید، قندیل‌های یخ و جعبه‌های شیرینی را بشکنید و ۳ ستاره بگیرید!</p>
+            </div>
+            <div class="player-tag-box">
+              <span>بازیکن:</span>
+              <button class="player-name-btn" id="btn-change-name" title="تغییر نام در لیدربورد">
+                <strong id="display-player-name">مهمان یلدا</strong> ✏️
+              </button>
+            </div>
+          </div>
+
+          <div class="saga-trail-wrapper" id="saga-trail-wrapper">
+            <!-- Populated dynamically by game.js with 15 ornate Persian Saga level nodes -->
+            <div class="saga-nodes-grid" id="saga-nodes-grid"></div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <!-- SCREEN 2: MATCH-3 GAMEPLAY (سفره بازی) -->
+    <main id="screen-game" class="screen">
+      <div class="game-layout">
+        <!-- Gameplay Top HUD -->
+        <section class="game-hud">
+          <div class="hud-right">
+            <button class="btn-ghost" id="btn-back-map" title="بازگشت به نقشه مراحل">
+              <span>🗺️ نقشه</span>
+            </button>
+            <div class="level-badge">
+              <span id="hud-level-num">مرحله ۱</span>
+              <small id="hud-level-name">آغاز شب چله</small>
+            </div>
+          </div>
+
+          <!-- Level Objectives -->
+          <div class="hud-objectives-wrap">
+            <div class="hud-section-label">اهداف مرحله</div>
+            <div class="hud-objectives" id="hud-objectives"></div>
+          </div>
+
+          <!-- Remaining Moves -->
+          <div class="hud-moves-box" id="hud-moves-box">
+            <span class="moves-label">حرکت</span>
+            <strong class="moves-count" id="hud-moves">۲۰</strong>
+          </div>
+        </section>
+
+        <!-- Score & 3-Star Progress Bar -->
+        <section class="star-progress-bar">
+          <div class="score-readout">
+            <span>امتیاز:</span>
+            <strong id="hud-score">۰</strong>
+            <span class="combo-badge hidden" id="hud-combo">کمبو ×۲</span>
+          </div>
+          <div class="progress-track-wrap">
+            <div class="progress-track">
+              <div class="progress-fill" id="star-progress-fill" style="width: 0%"></div>
+            </div>
+            <div class="star-marker marker-1" id="star-marker-1" style="right: 33%">⭐</div>
+            <div class="star-marker marker-2" id="star-marker-2" style="right: 66%">⭐</div>
+            <div class="star-marker marker-3" id="star-marker-3" style="right: 96%">⭐</div>
+          </div>
+        </section>
+
+        <!-- Active Booster Prompt Banner -->
+        <div class="booster-active-banner hidden" id="booster-active-banner">
+          <span id="booster-active-text">🔨 روی یک خانه از سفره کلیک کنید...</span>
+          <button class="btn-cancel-booster" id="btn-cancel-booster">لغو</button>
+        </div>
+
+        <!-- Center Match-3 Board Frame -->
+        <section class="board-stage">
+          <div class="board-ornate-frame">
+            <canvas id="game-canvas" width="560" height="560"></canvas>
+            <div class="board-floating-banner hidden" id="board-floating-banner"></div>
+          </div>
+        </section>
+
+        <!-- Bottom Boosters Bar (قابلیت‌های کمکی پایین صفحه) -->
+        <section class="boosters-dock">
+          <button class="booster-btn" id="booster-hammer" title="چکش گردوشکن: شکستن فوری هر خوراکی، قندیل یخ یا جعبه شیرینی بدون مصرف حرکت">
+            <div class="booster-icon">🔨</div>
+            <div class="booster-info">
+              <strong>چکش گردوشکن</strong>
+              <small>شکستن یک خانه</small>
+            </div>
+            <span class="booster-count" id="count-hammer">۳</span>
+          </button>
+
+          <button class="booster-btn" id="booster-swap" title="جابه‌جایی آزاد: تعویض هر دو خانه مجاور حتی بدون جور شدن!">
+            <div class="booster-icon">🔄</div>
+            <div class="booster-info">
+              <strong>جابه‌جایی آزاد</strong>
+              <small>تعویض دو خانه</small>
+            </div>
+            <span class="booster-count" id="count-swap">۲</span>
+          </button>
+
+          <button class="booster-btn" id="booster-shuffle" title="بر زدن سفره: چیدمان مجدد تمام خوراکی‌های روی سفره">
+            <div class="booster-icon">🎲</div>
+            <div class="booster-info">
+              <strong>بُر زدن سفره</strong>
+              <small>چیدمان مجدد</small>
+            </div>
+            <span class="booster-count" id="count-shuffle">۲</span>
+          </button>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <!-- MODAL 1: LEVEL BRIEFING (شروع مرحله) -->
+  <div class="modal-backdrop hidden" id="modal-level-brief">
+    <div class="modal-card modal-compact">
+      <button class="modal-close" data-close="modal-level-brief">✕</button>
+      <div class="modal-header-badge" id="brief-level-badge">مرحله ۱</div>
+      <h3 id="brief-level-title">آغاز شب چله</h3>
+      <p class="modal-desc" id="brief-level-desc">خوراکی‌های هم‌شکل را کنار هم ردیف کنید تا سفره یلدا تکمیل شود!</p>
+
+      <div class="brief-targets-box">
+        <div class="brief-label">اهداف این مرحله (<span id="brief-moves-count">۱۸</span> حرکت):</div>
+        <div class="brief-targets-list" id="brief-targets-list"></div>
+      </div>
+
+      <div class="brief-bombs-tip" id="brief-bombs-tip">
+        💡 <strong>نکته:</strong> جور کردن ۴ خوراکی <strong>ترقه خطی</strong> و ۵ خوراکی <strong>دیوان حافظ</strong> می‌سازد!
+      </div>
+
+      <div class="modal-actions">
+        <button class="btn-primary btn-lg" id="btn-confirm-start-level">🍉 ورود به سفره بازی</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL 2: VICTORY / LEVEL COMPLETE (پیروزی و تایید امتیاز روی Edge) -->
+  <div class="modal-backdrop hidden" id="modal-victory">
+    <div class="modal-card">
+      <div class="victory-stars" id="victory-stars">
+        <span class="v-star">⭐</span>
+        <span class="v-star">⭐</span>
+        <span class="v-star">⭐</span>
+      </div>
+      <h3 id="victory-title">🎉 مرحله با موفقیت کامل شد!</h3>
+      <p class="modal-desc" id="victory-subtitle">دست‌مریزاد! سفره یلدای این مرحله را عالی چیدید.</p>
+
+      <div class="victory-stats-grid">
+        <div class="v-stat-box">
+          <span>امتیاز مرحله</span>
+          <strong id="victory-score">۰</strong>
+        </div>
+        <div class="v-stat-box">
+          <span>جایزه گردوی طلایی</span>
+          <strong id="victory-coins">+۳۰ 🪙</strong>
+        </div>
+        <div class="v-stat-box">
+          <span>رتبه در لیدربورد لبه</span>
+          <strong id="victory-rank">#۱</strong>
+        </div>
+      </div>
+
+      <!-- Edge Computing Verification Box -->
+      <div class="edge-verification-card" id="edge-verification-card">
+        <div class="edge-ver-header">
+          <span class="edge-check-icon">✅</span>
+          <strong>اعتبارسنجی امتیاز در پردازش لبه آروان‌کلاد</strong>
+          <span class="edge-token-pill" id="edge-ver-token">TOKEN</span>
+        </div>
+        <ul class="edge-checks-list" id="edge-checks-list">
+          <li>در حال ارسال و اعتبارسنجی امتیاز روی نود لبه...</li>
+        </ul>
+      </div>
+
+      <div class="modal-actions">
+        <button class="btn-primary" id="btn-next-level">⏭️ مرحله بعدی</button>
+        <button class="btn-secondary" id="btn-share-victory">📤 اشتراک‌گذاری رکورد</button>
+        <button class="btn-ghost" id="btn-victory-map">🗺️ نقشه مراحل</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL 3: OUT OF MOVES / DEFEAT (اتمام حرکت‌ها) -->
+  <div class="modal-backdrop hidden" id="modal-defeat">
+    <div class="modal-card modal-compact">
+      <div class="defeat-icon">🕯️</div>
+      <h3>حرکت‌های این مرحله تمام شد!</h3>
+      <p class="modal-desc" id="defeat-desc">فقط چند حرکت دیگر تا تکمیل اهداف سفره یلدا فاصله دارید!</p>
+
+      <div class="brief-targets-box">
+        <div class="brief-label">وضعیت اهداف باقی‌مانده:</div>
+        <div class="brief-targets-list" id="defeat-targets-list"></div>
+      </div>
+
+      <div class="modal-actions-col">
+        <button class="btn-gold btn-lg" id="btn-buy-moves">
+          <span>➕ ۵ حرکت اضافه</span>
+          <span class="cost-pill">۲۵ 🪙</span>
+        </button>
+        <div class="modal-actions">
+          <button class="btn-primary" id="btn-retry-level">🔄 تلاش مجدد</button>
+          <button class="btn-ghost" id="btn-defeat-map">🗺️ نقشه مراحل</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL 4: FAL-E HAFEZ (فال حافظ شب یلدا) -->
+  <div class="modal-backdrop hidden" id="modal-fal">
+    <div class="modal-card modal-fal-card">
+      <button class="modal-close" data-close="modal-fal">✕</button>
+      <div class="fal-header">
+        <span class="fal-ornament">📜</span>
+        <h3>فال حافظ شب یلدا</h3>
+        <p>نیت کنید و بر دیوان خواجه شیراز تفألی بزنید (تولید شده روی لبه آروان)</p>
+      </div>
+
+      <div class="fal-Scroll" id="fal-content-box">
+        <div class="fal-title" id="fal-ghazal-title">غزل شماره ۱</div>
+        <div class="fal-poem" id="fal-poem"></div>
+        <div class="fal-interpretation">
+          <strong>✨ تفسیر یلدایی شما:</strong>
+          <p id="fal-interp-text"></p>
+        </div>
+        <div class="fal-meta-row">
+          <span id="fal-lucky-treat">شگون امشب: انار یاقوتی ❤️</span>
+          <span id="fal-bonus-hint">💡 نکته بازی</span>
+        </div>
+      </div>
+
+      <div class="modal-actions">
+        <button class="btn-primary" id="btn-new-fal">🔮 نیت دوباره و فال جدید</button>
+        <button class="btn-secondary" id="btn-share-fal">📤 اشتراک‌گذاری فال</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL 5: LEADERBOARD (جدول رده‌بندی آنلاین Edge) -->
+  <div class="modal-backdrop hidden" id="modal-leaderboard">
+    <div class="modal-card">
+      <button class="modal-close" data-close="modal-leaderboard">✕</button>
+      <div class="lb-header">
+        <h3>🏆 جدول رده‌بندی پردازش لبه آروان</h3>
+        <p>امتیازها پس از اعتبارسنجی ضدتقلب در Edge ثبت می‌شوند</p>
+      </div>
+
+      <div class="lb-name-editor">
+        <label for="input-player-name">نام شما در جدول:</label>
+        <input type="text" id="input-player-name" maxlength="20" placeholder="نام خود را وارد کنید..." />
+        <button class="btn-secondary btn-sm" id="btn-save-name">ثبت نام</button>
+      </div>
+
+      <div class="lb-tabs">
+        <button class="lb-tab active" data-tab="saga" id="tab-lb-saga">🌟 نقشه مراحل (مجموع ستاره‌ها)</button>
+        <button class="lb-tab" data-tab="daily" id="tab-lb-daily">⚡ چالش امروز</button>
+      </div>
+
+      <div class="lb-list-container" id="lb-list-container">
+        <!-- Populated dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL 6: GAME GUIDE (راهنمای سفره یلدا و بمب‌ها) -->
+  <div class="modal-backdrop hidden" id="modal-guide">
+    <div class="modal-card">
+      <button class="modal-close" data-close="modal-guide">✕</button>
+      <h3>❓ راهنمای سفره یلدا و بمب‌های ترکیبی</h3>
+      <p class="modal-desc">با جور کردن ۳ یا چند خوراکی یلدایی هم‌شکل، اهداف هر مرحله را قبل از اتمام حرکت‌ها کامل کنید.</p>
+
+      <div class="guide-grid">
+        <div class="guide-item">
+          <div class="guide-badge">💥 ۴ تایی</div>
+          <div>
+            <strong>ترقه خطی (افقی یا عمودی)</strong>
+            <p>با جور کردن ۴ خوراکی در یک خط ساخته می‌شود و تمام یک سطر یا ستون را یک‌جا منفجر می‌کند!</p>
+          </div>
+        </div>
+
+        <div class="guide-item">
+          <div class="guide-badge">💣 شکل L یا T</div>
+          <div>
+            <strong>بمب انار انفجاری</strong>
+            <p>با جور کردن ۵ خوراکی به شکل L یا T ساخته می‌شود و یک مربع ۳×۳ اطراف خود را متلاشی می‌کند!</p>
+          </div>
+        </div>
+
+        <div class="guide-item">
+          <div class="guide-badge">📘 ۵ تایی خطی</div>
+          <div>
+            <strong>دیوان حافظ (رنگ‌پاک‌کن جادویی)</strong>
+            <p>با هر خوراکی جابه‌جایش کنید، تمام خوراکی‌های هم‌رنگ آن در کل سفره را با صاعقه طلایی جمع می‌کند! اگر آن را با یک بمب یا ترقه ترکیب کنید، همه خوراکی‌های آن رنگ به بمب تبدیل می‌شوند!</p>
+          </div>
+        </div>
+
+        <div class="guide-item">
+          <div class="guide-badge">❄️ قندیل یخ</div>
+          <div>
+            <strong>مانع: قندیل یخ زمستانی</strong>
+            <p>روی خوراکی‌ها قرار دارد. خوراکی داخل یخ را جور کنید یا با بمب بزنید تا یخ بشکند (برخی یخ‌ها ۲ لایه هستند).</p>
+          </div>
+        </div>
+
+        <div class="guide-item">
+          <div class="guide-badge">🎁 جعبه شیرینی</div>
+          <div>
+            <strong>مانع: جعبه شیرینی یلدایی</strong>
+            <p>جعبه‌ها تکان نمی‌خورند! خوراکی‌های خانه‌های مجاورشان را جور کنید یا با موج ترقه و بمب انار آن‌ها را باز کنید.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-actions">
+        <button class="btn-primary" data-close="modal-guide">متوجه شدم، بزن بریم!</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast notification -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <script src="/audio.js"></script>
+  <script src="/levels.js"></script>
+  <script src="/renderer.js"></script>
+  <script src="/game.js"></script>
+</body>
+</html>

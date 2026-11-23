@@ -1,0 +1,20 @@
+{
+  "name": "sofreh-yalda-arvan-edge",
+  "version": "1.0.0",
+  "description": "سفره یلدا - بازی پازل Match-3 شب چله ویژه مسابقه پردازش لبه آروان‌کلاد",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "build": "node scripts/build-edge.js"
+  },
+  "keywords": [
+    "arvancloud",
+    "edge-computing",
+    "yalda",
+    "match3",
+    "candy-crush",
+    "persian-game"
+  ],
+  "author": "Mohammad",
+  "license": "MIT"
+}
